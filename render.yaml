@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: mood-tracker-agent
+    runtime: static
+    buildCommand: npm install && npm run build
+    publishPath: dist
+    autoDeploy: true
