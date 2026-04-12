@@ -1,0 +1,562 @@
+@import "tailwindcss";
+
+/* ═══ Animations ═══ */
+@keyframes breatheIn { 0% { transform: scale(0.5); opacity: 0.4; } 100% { transform: scale(1); opacity: 1; } }
+@keyframes breatheOut { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(0.5); opacity: 0.4; } }
+@keyframes breatheHold { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(1); opacity: 0.9; } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+@keyframes pulse-soft { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+@keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+@keyframes gaugeAnim { from { stroke-dashoffset: 314; } }
+@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes glow-pulse { 0%, 100% { box-shadow: 0 0 20px rgba(138,108,240,0.3); } 50% { box-shadow: 0 0 40px rgba(138,108,240,0.5), 0 0 60px rgba(99,179,237,0.2); } }
+@keyframes aurora-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+@keyframes nebula-drift {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+  33% { transform: translate(40px, -30px) scale(1.1); opacity: 0.6; }
+  66% { transform: translate(-30px, 20px) scale(0.9); opacity: 0.3; }
+  100% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+}
+@keyframes shooting-star {
+  0% { transform: translateX(0) translateY(0); opacity: 1; }
+  100% { transform: translateX(200px) translateY(200px); opacity: 0; }
+}
+@keyframes orbit { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+@keyframes color-shift {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+.animate-fadeInUp { animation: fadeInUp 0.4s ease-out both; }
+.animate-scaleIn { animation: scaleIn 0.3s ease-out both; }
+.animate-slideUp { animation: slideUp 0.35s ease-out both; }
+.animate-gauge { animation: gaugeAnim 1.5s ease-out both; }
+.animate-pulse-soft { animation: pulse-soft 2s ease-in-out infinite; }
+.animate-float { animation: float 4s ease-in-out infinite; }
+.animate-glow { animation: glow-pulse 3s ease-in-out infinite; }
+
+.breath-in { animation: breatheIn var(--breath-dur) ease-in-out forwards; }
+.breath-out { animation: breatheOut var(--breath-dur) ease-in-out forwards; }
+.breath-hold { animation: breatheHold var(--breath-dur) ease-in-out forwards; }
+
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+
+* { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
+
+/* ═══ Dark Cosmic Theme ═══ */
+html, body {
+  background: #06080F !important;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  color: #E2E8F0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+}
+
+#root {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* ═══ GLOBAL DARK MODE OVERRIDE FOR ALL SUB-COMPONENTS ═══ */
+/* This forces dark mode on ClinicalFeatures, DoctorPrescribed, AdvancedHealing */
+.bg-white { background: rgba(15, 20, 40, 0.7) !important; backdrop-filter: blur(16px); }
+.bg-gray-50, .bg-slate-50, .bg-gray-100, .bg-slate-100 { background: rgba(15, 20, 40, 0.5) !important; }
+.bg-gray-200, .bg-slate-200 { background: rgba(30, 40, 70, 0.5) !important; }
+.bg-blue-50, .bg-purple-50, .bg-green-50, .bg-red-50, .bg-yellow-50, .bg-pink-50, .bg-indigo-50, .bg-teal-50, .bg-orange-50 {
+  background: rgba(15, 20, 40, 0.5) !important;
+}
+.text-gray-900, .text-slate-900, .text-gray-800, .text-slate-800 { color: #E2E8F0 !important; }
+.text-gray-700, .text-slate-700 { color: #CBD5E1 !important; }
+.text-gray-600, .text-slate-600 { color: #94A3B8 !important; }
+.text-gray-500, .text-slate-500 { color: #64748B !important; }
+.text-gray-400, .text-slate-400 { color: #475569 !important; }
+.border-slate-100, .border-gray-100, .border-slate-200, .border-gray-200 {
+  border-color: rgba(100, 120, 180, 0.15) !important;
+}
+.shadow-sm { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.03) !important; }
+.rounded-3xl { border-radius: 20px !important; }
+
+/* ═══ DARK MODE FORCE - Override inline styles in feature screens ═══ */
+/* This targets ALL child elements inside the dark-features wrapper */
+.dark-features div[style],
+.dark-features p[style],
+.dark-features span[style],
+.dark-features h2[style],
+.dark-features h3[style],
+.dark-features h4[style],
+.dark-features button[style] {
+  color: inherit;
+}
+
+/* Force all feature screen card backgrounds to dark glass */
+.dark-features > div > div[style*="background"] {
+  background: rgba(12, 18, 35, 0.65) !important;
+  backdrop-filter: blur(16px) !important;
+  border-color: rgba(100, 120, 180, 0.12) !important;
+}
+
+/* Force dark on inputs inside feature screens */
+input, textarea, select {
+  font-family: inherit;
+  font-size: 16px;
+  color: #E2E8F0 !important;
+  background: rgba(15, 20, 40, 0.8) !important;
+  border-color: rgba(100, 120, 180, 0.2) !important;
+}
+input::placeholder, textarea::placeholder { color: #475569 !important; }
+
+::-webkit-scrollbar { width: 0; height: 0; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* ═══ App Container ═══ */
+.app-container {
+  position: relative;
+  min-height: 100vh;
+  max-width: 430px;
+  margin: 0 auto;
+  overflow-x: hidden;  /* Only hide horizontal, NOT vertical */
+  background: transparent;
+}
+
+/* ═══ Cosmic Background ═══ */
+.cosmic-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse at 20% 15%, rgba(124, 58, 237, 0.18) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 25%, rgba(59, 130, 246, 0.14) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 70%, rgba(16, 185, 129, 0.10) 0%, transparent 50%),
+    radial-gradient(ellipse at 15% 85%, rgba(244, 114, 182, 0.08) 0%, transparent 40%),
+    radial-gradient(ellipse at 90% 80%, rgba(251, 191, 36, 0.06) 0%, transparent 40%),
+    linear-gradient(180deg, #06080F 0%, #0A0E1A 30%, #0D1225 60%, #06080F 100%);
+}
+
+/* ═══ Nebula Layers ═══ */
+.nebula {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(80px);
+}
+.nebula-1 {
+  width: 300px; height: 300px;
+  top: 5%; left: -10%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.2), transparent 70%);
+  animation: nebula-drift 20s ease-in-out infinite;
+}
+.nebula-2 {
+  width: 250px; height: 250px;
+  top: 40%; right: -15%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.15), transparent 70%);
+  animation: nebula-drift 28s ease-in-out infinite reverse;
+}
+.nebula-3 {
+  width: 200px; height: 200px;
+  bottom: 10%; left: 20%;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.12), transparent 70%);
+  animation: nebula-drift 24s ease-in-out infinite;
+  animation-delay: -8s;
+}
+.nebula-4 {
+  width: 180px; height: 180px;
+  top: 60%; left: -5%;
+  background: radial-gradient(circle, rgba(244, 114, 182, 0.10), transparent 70%);
+  animation: nebula-drift 30s ease-in-out infinite;
+  animation-delay: -15s;
+}
+
+/* ═══ Stars ═══ */
+.stars-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: white;
+}
+.star-bright {
+  box-shadow: 0 0 4px rgba(255,255,255,0.6), 0 0 8px rgba(139,92,246,0.3);
+}
+.star-blue {
+  background: #93C5FD;
+  box-shadow: 0 0 4px rgba(147,197,253,0.6);
+}
+.star-purple {
+  background: #C4B5FD;
+  box-shadow: 0 0 4px rgba(196,181,253,0.6);
+}
+.star-gold {
+  background: #FDE68A;
+  box-shadow: 0 0 4px rgba(253,230,138,0.6);
+}
+
+/* ═══ Glass Cards ═══ */
+.glass-card {
+  background: rgba(12, 18, 35, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(100, 120, 180, 0.12);
+  border-radius: 20px;
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.glass-card:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.glass-card-glow {
+  background: rgba(12, 18, 35, 0.55);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 22px;
+  box-shadow:
+    0 0 30px rgba(139, 92, 246, 0.12),
+    0 4px 24px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(139, 92, 246, 0.08);
+}
+
+/* ═══ Bottom Navigation ═══ */
+.bottom-nav {
+  background: rgba(6, 8, 15, 0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid rgba(100, 120, 180, 0.1);
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.nav-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 14px;
+  transition: all 0.2s;
+}
+.nav-btn-active { filter: none; }
+.nav-btn-inactive { filter: grayscale(0.5) brightness(0.5); }
+
+.fab-button {
+  background: linear-gradient(135deg, #8B5CF6, #6366F1, #3B82F6);
+  border: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 28px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -24px;
+  box-shadow:
+    0 4px 20px rgba(99, 102, 241, 0.5),
+    0 0 40px rgba(99, 102, 241, 0.2),
+    inset 0 1px 0 rgba(255,255,255,0.2);
+  transition: all 0.2s;
+}
+.fab-button:hover {
+  transform: scale(1.08);
+  box-shadow:
+    0 6px 28px rgba(99, 102, 241, 0.6),
+    0 0 60px rgba(99, 102, 241, 0.3);
+}
+
+/* ═══ Gradient Badges ═══ */
+.badge-purple {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(99, 102, 241, 0.15));
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: #C4B5FD;
+}
+.badge-green {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(52, 211, 153, 0.15));
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #6EE7B7;
+}
+.badge-amber {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(251, 191, 36, 0.15));
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: #FCD34D;
+}
+.badge-red {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(248, 113, 113, 0.15));
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #FCA5A5;
+}
+.badge-blue {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(96, 165, 250, 0.15));
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #93C5FD;
+}
+
+/* ═══ Range Inputs ═══ */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  background: rgba(30, 40, 70, 0.6) !important;
+  border: none !important;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8B5CF6, #6366F1);
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(99, 102, 241, 0.5), 0 0 20px rgba(99, 102, 241, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+input[type="range"]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8B5CF6, #6366F1);
+  cursor: pointer;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #8B5CF6;
+  cursor: pointer;
+}
+
+/* ═══ Toast ═══ */
+.toast {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, rgba(12, 18, 35, 0.95), rgba(30, 40, 70, 0.95));
+  backdrop-filter: blur(20px);
+  color: #E2E8F0;
+  padding: 14px 28px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 999;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 20px rgba(139, 92, 246, 0.15);
+}
+
+/* ═══ Section Title ═══ */
+.section-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #94A3B8;
+  margin: 0 0 12px;
+}
+
+/* ═══ Gradient Text ═══ */
+.gradient-text {
+  background: linear-gradient(135deg, #C4B5FD, #93C5FD, #6EE7B7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-text-warm {
+  background: linear-gradient(135deg, #FCD34D, #F472B6, #C4B5FD);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ═══ Colorful Accents for Feature Cards ═══ */
+.feature-card-purple { border-left: 3px solid #8B5CF6 !important; }
+.feature-card-blue { border-left: 3px solid #3B82F6 !important; }
+.feature-card-green { border-left: 3px solid #10B981 !important; }
+.feature-card-amber { border-left: 3px solid #F59E0B !important; }
+.feature-card-pink { border-left: 3px solid #EC4899 !important; }
+.feature-card-teal { border-left: 3px solid #14B8A6 !important; }
+
+/* ═══ Button overrides for feature screens ═══ */
+button {
+  font-family: inherit;
+}
+
+/* Make all buttons in feature screens dark-compatible */
+.bg-blue-500, .bg-purple-500, .bg-green-500, .bg-red-500, .bg-yellow-500, .bg-pink-500, .bg-indigo-500 {
+  color: white !important;
+}
+
+/* ═══ CRITICAL: Force Dark Mode on Feature Screens with inline styles ═══ */
+/* Nuclear option: Override ALL inline color/background on any element inside dark-wrap */
+.dark-wrap * {
+  --force-text: #E2E8F0;
+  --force-text-soft: #94A3B8;
+  --force-bg: rgba(12, 18, 35, 0.65);
+  --force-border: rgba(100, 120, 180, 0.15);
+}
+
+/* Override all inline dark text colors to light */
+.dark-wrap [style*="color: #2e244c"],
+.dark-wrap [style*="color: #2E244C"],
+.dark-wrap [style*="color:#2e244c"],
+.dark-wrap [style*="color: rgb(46, 36, 76)"] { color: #E2E8F0 !important; }
+
+.dark-wrap [style*="color: #5C4D76"],
+.dark-wrap [style*="color: #5c4d76"],
+.dark-wrap [style*="color:#5C4D76"] { color: #94A3B8 !important; }
+
+.dark-wrap [style*="color: #999"],
+.dark-wrap [style*="color:#999"],
+.dark-wrap [style*="color: #ccc"],
+.dark-wrap [style*="color:#ccc"] { color: #64748B !important; }
+
+/* Override light backgrounds */
+.dark-wrap [style*="background: #fff"],
+.dark-wrap [style*="background:#fff"],
+.dark-wrap [style*="background: #FFF"],
+.dark-wrap [style*="background: white"],
+.dark-wrap [style*="background: rgb(255"],
+.dark-wrap [style*="background: rgba(255, 255, 255"],
+.dark-wrap [style*="background: rgba(255,255,255"],
+.dark-wrap [style*="background:#faf8ff"],
+.dark-wrap [style*="background: #faf8ff"],
+.dark-wrap [style*="background: #f8f5ff"],
+.dark-wrap [style*="background:#f8f5ff"],
+.dark-wrap [style*="background: #f5f0ff"],
+.dark-wrap [style*="background: #f3eeff"],
+.dark-wrap [style*="background:#f3eeff"],
+.dark-wrap [style*="background: #fff0f0"],
+.dark-wrap [style*="background:#fff0f0"],
+.dark-wrap [style*="background: #f0fff5"],
+.dark-wrap [style*="background: #fef3e2"],
+.dark-wrap [style*="background: #f0f0f0"] {
+  background: rgba(12, 18, 35, 0.65) !important;
+}
+
+/* Override light border colors */
+.dark-wrap [style*="border: 1px solid #e0d8f0"],
+.dark-wrap [style*="border: 1.5px solid #e0d8f0"],
+.dark-wrap [style*="border-bottom: 1px solid #f5f0ff"],
+.dark-wrap [style*="border-bottom: 1px solid #f0fff5"],
+.dark-wrap [style*="border: 1px solid #f0e6ff"],
+.dark-wrap [style*="border: 2px solid #8a6cf0"] {
+  border-color: rgba(100, 120, 180, 0.2) !important;
+}
+
+/* Fix conic gradient inner circles (wellness score, etc) */
+.dark-wrap [style*="background: #fff"][style*="border-radius"] {
+  background: rgba(12, 18, 35, 0.9) !important;
+}
+/* Feature files use inline rgba(255,255,255,...) backgrounds - CSS can't override inline.
+   Solution: Use a wrapper div + JS to force dark. As fallback, we ensure the wrapper 
+   itself provides readable contrast. */
+.dark-wrap {
+  color: #E2E8F0;
+  min-height: 100vh;
+}
+.dark-wrap h2, .dark-wrap h3, .dark-wrap h4 { color: #E2E8F0 !important; }
+.dark-wrap p { color: #CBD5E1 !important; }
+.dark-wrap button { color: #E2E8F0; }
+.dark-wrap label { color: #CBD5E1 !important; }
+.dark-wrap span { color: inherit; }
+
+/* Override the white/light card backgrounds that are set via inline styles */
+.dark-wrap [style*="rgba(255"] {
+  background: rgba(12, 18, 35, 0.65) !important;
+  border-color: rgba(100, 120, 180, 0.15) !important;
+}
+
+/* Override hex white backgrounds */
+.dark-wrap [style*="#fff"],
+.dark-wrap [style*="#FFF"],
+.dark-wrap [style*="rgb(255"],
+.dark-wrap [style*="#faf8ff"],
+.dark-wrap [style*="#FAF8FF"] {
+  background: rgba(12, 18, 35, 0.65) !important;
+}
+
+/* Override dark text colors set via inline styles */
+.dark-wrap [style*="color: #2e244c"],
+.dark-wrap [style*="color: #2E244C"],
+.dark-wrap [style*="color: rgb(46"] {
+  color: #E2E8F0 !important;
+}
+.dark-wrap [style*="color: #5C4D76"],
+.dark-wrap [style*="color: #5c4d76"],
+.dark-wrap [style*="color: rgb(92"] {
+  color: #94A3B8 !important;
+}
+
+/* Override light border colors */
+.dark-wrap [style*="border"] {
+  border-color: rgba(100, 120, 180, 0.15) !important;
+}
+
+/* Override backgrounds on buttons that have gradient backgrounds - keep those */
+.dark-wrap button[style*="linear-gradient"] {
+  background: inherit;
+}
+
+/* Fix cards inside feature screens that use light backgrounds */
+.dark-wrap [style*="background: rgba(255, 255, 255"] {
+  background: rgba(12, 18, 35, 0.65) !important;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255,255,255,0.04) !important;
+}
+
+/* Fix the light purple/green gradient backgrounds in AdvancedHealing headers */
+.dark-wrap [style*="linear-gradient(135deg, #eadbff"],
+.dark-wrap [style*="linear-gradient(135deg, #cbf3e5"] {
+  background: linear-gradient(135deg, rgba(139,92,246,0.2), rgba(16,185,129,0.1)) !important;
+}
+
+/* Override borders that use light colors */
+.dark-wrap [style*="border: 1.5px solid #e0d8f0"],
+.dark-wrap [style*="border: 1px solid #e0d8f0"],
+.dark-wrap [style*="border-color: #e0d8f0"] {
+  border-color: rgba(100, 120, 180, 0.2) !important;
+}
+
+/* Fix input backgrounds inside feature screens */
+.dark-wrap input[style],
+.dark-wrap textarea[style] {
+  background: rgba(15, 20, 40, 0.8) !important;
+  color: #E2E8F0 !important;
+  border-color: rgba(100, 120, 180, 0.2) !important;
+}
+
+/* ═══ Smooth scrolling ═══ */
+html { scroll-behavior: smooth; }
