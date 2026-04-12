@@ -41,6 +41,30 @@ The app operates on a recursive feedback loop designed for growth:
 
 ---
 
+## 🚀 Top 20 Essential Features
+1.  **Burnout Prediction Engine**: AI-driven risk scoring (0-100) based on stress/energy data.
+2.  **AES-256 Encryption**: Military-grade security for all journal entries and records.
+3.  **High-Fidelity Mood Logging**: Quick-tap interface for tracking nuanced emotions.
+4.  **Stress Trigger Analysis**: Automatically links activities to emotional shifts.
+5.  **Clinical PHQ-9 & GAD-7**: Professional screening tools for depression and anxiety.
+6.  **CBT Thought Reframing**: Guided digital worksheets for cognitive behavioral therapy.
+7.  **Panic Mode (Cloaking)**: One-tap toggle to hide the app behind a calculator interface.
+8.  **Grounding (5-4-3-2-1)**: Interactive sensory guide for acute panic relief.
+9.  **Binaural Sound Therapy**: therapeutic frequencies for focus and relaxation.
+10. **Voice Journaling**: Hands-free reflection with emotion detection insights.
+11. **Adaptive Mood UI**: Dynamic theme colors that normalize the user's emotional state.
+12. **Energy Battery Tracking**: Visualizes mental and physical energy reserves.
+13. **Wellness Balance Scoring**: Holistic health dashboard with radial progress metrics.
+14. **Crisis Safety Planning**: Structured intervention card for emergency situations.
+15. **Sleep & Mood Correlation**: Analyzes how rest impacts emotional performance.
+16. **DBT Skills Dashboard**: Quick access to distress tolerance and mindfulness tools.
+17. **Activity Tagging**: Contextual tagging (14+ types) for work and personal life.
+18. **Cognitive Distortion Alerts**: Identifying harmful thinking patterns in real-time.
+19. **Sunlight & Hydration Logs**: Tracking physical habits that influence mental state.
+20. **Proactive Notifications**: Smart, non-intrusive reminders for self-care and check-ins.
+
+---
+
 ## 🏗️ Architecture
 MoodVS is built as a **Privacy-First Progressive Web App**, emphasizing security and client-side performance.
 
